@@ -1,3 +1,15 @@
+@media (max-width: 1053px){
+    .table-responsive {
+        height: 100% !important;
+    }
+}
+
+.table-responsive {
+    display: block;
+    width: 100%;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+}
 .page-fluid {
     width: 100%;
     padding-left: 30px;
