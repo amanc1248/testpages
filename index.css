@@ -1,3 +1,12 @@
+.body{font-family: "Inter", sans-serif}
+.table-card tbody tr {
+    background-color: #ffffff;
+}
+tr {
+    display: table-row;
+    vertical-align: inherit;
+    border-color: inherit;
+}
 @media (max-width: 1053px){
     .table-responsive {
         height: 100% !important;
