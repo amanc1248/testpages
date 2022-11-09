@@ -4,7 +4,7 @@ class HelloWorldComponent extends HTMLElement {
   }
 
   connectedCallback() {
-    this.innerHTML = `<h1>Hello world!</h1>`;
+    this.innerHTML = `<h1>Hello world it i sis isadfjasjdfjkasdfjkjsajf!</h1>`;
   }
 }
 
