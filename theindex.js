@@ -84,9 +84,82 @@ class QuotesRates extends HTMLElement {
     td{
       background-color: #fff;
     }
-    // .data__mapped{
-    //   background-color:  #2e4d763d;
-    // }
+    body{
+      font-family: Inter,sans-serif;
+  }
+  .pagination__div{
+      display: flex;
+      align-items: baseline;
+  }
+  #upperBar{
+      margin-bottom: 10px;
+  }
+  #quotesRatesSelect, #pagination__id{
+      /* width: 200px; */
+      height: 30px;
+      background: #fff;
+      border-radius: 3px;
+      box-shadow: 0 4px 6px rgb(20 28 52 / 20%);
+      border: none;
+  }
+  #pagination__id{
+      width: 50px;
+  }
+  .quotes__rates__page_number__text{
+      margin-right: 10px;
+      font-size: 13px;
+  }   
+  #quotes__div__id, #rates__div__id{
+      padding: 10px;
+      border-radius: 4px;
+  }
+  tr{
+      font-size: 12px;
+      color:#687d96
+  }
+  td{
+      font-size: 13px;
+  }
+  tbody tr{
+      color: black;
+  }
+  
+  .badge-gray-100 {
+      background-color: #dbe2eb;
+      color: #172a41;
+  }
+  .badge {
+      border-radius: 3px;
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 600;
+      line-height: 15px;
+      padding: 3px 5px;
+      text-align: center;
+      transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+      vertical-align: initial;
+      white-space: nowrap;
+  }
+  .table-card td:first-child {
+      border-bottom-left-radius: 5px;
+      border-top-left-radius: 5px;
+  }
+  .table-card td {
+      font-size: 12px;
+      height: 30px;
+      /* padding: 10px; */
+  }
+  .table-card td {
+      /* border: none; */
+      border: 0.5px solid rgba(0, 0, 0, 0.049);
+      white-space: nowrap;
+  }
+  
+  .table td{
+      border-top: 1px solid hsla(210,8%,51%,.13);
+      padding: 0.65rem 0.50rem;
+      vertical-align: middle;
+  }
     
 </style>
     <div id="main__div" >
