@@ -1,5 +1,5 @@
 console.log(window.location.href);
-
+console.log(document.getElements('quotes__rates__main__div'));
 const template = document.createElement("template");
 // template.innerHTML = ;
 
@@ -7,9 +7,9 @@ class QuotesRates extends HTMLElement {
   constructor() {
     
     super();
-    this.showInfo = true;
-    this.attachShadow({ mode: "open" });
-    this.shadowRoot.appendChild(template.content.cloneNode(true));
+    // this.showInfo = true;
+    // this.attachShadow({ mode: "open" });
+    // this.shadowRoot.appendChild(template.content.cloneNode(true));
   }
 
   connectedCallback() {
@@ -177,7 +177,9 @@ class QuotesRates extends HTMLElement {
       </div>
     </div>
 `;
-    document.body.appendChild(para);
+const quotesRatesMainDivFromWebsite = document.getElementById('quotes__rates__main__div');
+
+quotesRatesMainDivFromWebsite.appendChild(para);
   }
 
   // 1. rendering some data
