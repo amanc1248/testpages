@@ -182,7 +182,7 @@ class QuotesRates extends HTMLElement {
   // 1. rendering some data
   getQuotes({ pageNumber }) {
     console.log(this)
-    const theId = this.getAttribute("quotesRateId");
+    const theId = this.getAttribute("quotesRatesId");
     console.log(theId);
     return new Promise((res, rej) => {
       fetch(
@@ -191,21 +191,20 @@ class QuotesRates extends HTMLElement {
         .then((data) => data.json())
         .then((json) => {
           console.log(json);
-          if (json.message == "Not authorized") {
-            document.getElementById("upperBar").remove();
-          } else {
             this.renderQuotes(json);
             res();
-          }
-          // this.createUpperBar()
         })
-        .catch((error) => rej(error));
+        .catch((error) => {
+          document.getElementById("upperBar").remove();
+          console.log("Error inside getQuotes");
+          res();
+        });
     });
   }
 
   // 2. getting rates
   getRates({ pageNumber }) {
-    const theId = this.getAttribute("quotesRateId");
+    const theId = this.getAttribute("quotesRatesId");
     console.log(theId);
     return new Promise((res, rej) => {
       fetch(
@@ -213,14 +212,14 @@ class QuotesRates extends HTMLElement {
       )
         .then((data) => data.json())
         .then((json) => {
-          if (json.message == "Not authorized") {
-            document.getElementById("upperBar").remove();
-          } else {
             this.renderRates(json);
             res();
-          }
         })
-        .catch((error) => rej(error));
+        .catch((error) =>{
+          document.getElementById("upperBar").remove();
+          console.log("error inside getRates")
+          res()
+        });
     });
   }
 
@@ -233,7 +232,7 @@ class QuotesRates extends HTMLElement {
 
   // 4. getQuotesCount
   getQuoteTotalCounts({ modalName }) {
-    const theId = this.getAttribute("quotesRateId");
+    const theId = this.getAttribute("quotesRatesId");
     console.log(theId);
     return new Promise((res, rej) => {
       fetch(
@@ -242,18 +241,17 @@ class QuotesRates extends HTMLElement {
         .then((data) => data.json())
         .then((json) => {
           console.log(json);
-          if (json.message == "Not authorized") {
-            document.getElementById("upperBar").remove();
-          } else {
             const { quotesCount } = json;
             const totalPages = Math.ceil(quotesCount / 20);
             console.log(totalPages);
             this.renderPagination(totalPages);
-
             res();
-          }
         })
-        .catch((error) => rej(error));
+        .catch((error) => {
+          document.getElementById("upperBar").remove();
+          console.log("error inside getQuotesTotalCounts")
+          res()
+      });
     });
   }
 
