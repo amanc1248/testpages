@@ -62,12 +62,7 @@ class QuotesRates extends HTMLElement {
     console.log(quotesRatesHeight, quotesRatesWidth)
     const para = document.createElement("div");
     para.innerHTML = `
-<style>
-    #main__div{
-      width:${quotesRatesWidth};
-      height:${quotesRatesHeight};
-      z-index: 1;
-    }    
+<style> 
     #upperBar{
       display: flex;
       justify-content: space-between; 
