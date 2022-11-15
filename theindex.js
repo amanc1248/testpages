@@ -1,5 +1,5 @@
 console.log(window.location.href);
-console.log(document.getElements('quotes__rates__main__div'));
+// console.log(document.getElements('quotes__rates__main__div'));
 const template = document.createElement("template");
 // template.innerHTML = ;
 
