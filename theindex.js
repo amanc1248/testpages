@@ -66,6 +66,7 @@ class QuotesRates extends HTMLElement {
     #main__div{
       width:${quotesRatesWidth};
       height:${quotesRatesHeight};
+      z-index: 1;
     }    
     #upperBar{
       display: flex;
