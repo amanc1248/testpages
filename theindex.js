@@ -1,6 +1,4 @@
 const template = document.createElement("template");
-// template.innerHTML = ;
-
 class QuotesRates extends HTMLElement {
   constructor() {
     
@@ -14,13 +12,11 @@ class QuotesRates extends HTMLElement {
     this.createUpperBar();
     this.getQuoteTotalCounts({ modalName: "LoadQuote" });
     this.getQuotes({ pageNumber: 1 });
-    // this.getRates();
 
     document
     .getElementById("quotesRatesSelect")
     .addEventListener("change", (event) => {
       const theValue = document.getElementById("quotesRatesSelect").value;
-      console.log("selectedvalue: ", theValue);
       if (theValue == "quotes") {
         document.getElementById("rates__div__id").remove();
         this.getQuoteTotalCounts({ modalName: "LoadQuote" });
@@ -54,7 +50,6 @@ class QuotesRates extends HTMLElement {
   createUpperBar() {
     const quotesRatesHeight = this.getAttribute("quotesRatesHeight");
     const quotesRatesWidth = this.getAttribute('quotesRatesWidth');
-    console.log(quotesRatesHeight, quotesRatesWidth)
     const para = document.createElement("div");
     para.innerHTML = `
 <style>
@@ -198,22 +193,18 @@ quotesRatesMainDivFromWebsite.appendChild(para);
 
   // 1. rendering some data
   getQuotes({ pageNumber }) {
-    console.log(this)
     const theId = this.getAttribute("quotesRatesId");
-    console.log(theId);
     return new Promise((res, rej) => {
       fetch(
         `http://localhost:5000/tms/quotesRates?pageNumber=${pageNumber}&nPerPage=20&modelName=LoadQuote&token=${theId}`
       )
         .then((data) => data.json())
         .then((json) => {
-          console.log(json);
             this.renderQuotes(json);
             res();
         })
         .catch((error) => {
-          document.getElementById("upperBar").remove();
-          console.log("Error inside getQuotes");
+          document.getElementById("main__div").remove();
           res();
         });
     });
@@ -222,7 +213,6 @@ quotesRatesMainDivFromWebsite.appendChild(para);
   // 2. getting rates
   getRates({ pageNumber }) {
     const theId = this.getAttribute("quotesRatesId");
-    console.log(theId);
     return new Promise((res, rej) => {
       fetch(
         `http://localhost:5000/tms/quotesRates?pageNumber=${pageNumber}&nPerPage=20&modelName=LoadPricingSettings&token=${theId}`
@@ -233,8 +223,7 @@ quotesRatesMainDivFromWebsite.appendChild(para);
             res();
         })
         .catch((error) =>{
-          document.getElementById("upperBar").remove();
-          console.log("error inside getRates")
+          document.getElementById("main__div").remove();
           res()
         });
     });
@@ -243,13 +232,11 @@ quotesRatesMainDivFromWebsite.appendChild(para);
   // 3. onChanging qutoes or rates
   changeQuotesRates() {
     var x = document.getElementById("quotesRatesSelect").value;
-    console.log(x);
   }
 
   // 4. getQuotesCount
   getQuoteTotalCounts({ modalName }) {
     const theId = this.getAttribute("quotesRatesId");
-    console.log(theId);
     return new Promise((res, rej) => {
       fetch(
         `http://localhost:5000/tms/quotesRatesCount?modelName=${modalName}&token=${theId}`
@@ -264,7 +251,7 @@ quotesRatesMainDivFromWebsite.appendChild(para);
             res();
         })
         .catch((error) => {
-          document.getElementById("upperBar").remove();
+          document.getElementById("main__div").remove();
           console.log("error inside getQuotesTotalCounts")
           res()
       });
@@ -272,8 +259,6 @@ quotesRatesMainDivFromWebsite.appendChild(para);
   }
 
   renderQuotes(data) {
-    console.log("i am rendering quotes");
-
     const para = document.createElement("div");
     para.id='quotes__div__id';
     para.innerHTML = `
@@ -331,25 +316,25 @@ quotesRatesMainDivFromWebsite.appendChild(para);
                     : `<span class=" badge badge-gray-100">Expired</span>`
                 }
               </td>
-              <td>${d.caller && d.caller.company_name}</td>
+              <td>${d.caller && d.caller?.company_name ?d.caller?.company_name :""}</td>
               <td>
                 ${d.shipper
                   .map((e, i) => {
                     return e.company_name;
                   })
-                  .join(", ")}
+                  .join("")}
               </td>
               <td>${d.consignee
                 .map((e, i) => {
                   return e.company_name;
                 })
-                .join(", ")}</td>
-              <td>${d.quote}</td>
-              <td>${d.city}</td>
-              <td>${d.state}</td>
-              <td>${d.zipCode}</td>
-              <td>${d.numberofLoad}</td>
-              <td>${d.validUpTo}</td>
+                .join("")}</td>
+              <td>${d?.quote ?d.quote: ""}</td>
+              <td>${d?.city ? d.city :""}</td>
+              <td>${d?.state ? d.state : ""}</td>
+              <td>${d?.zipCode ? d.zipCode :""}</td>
+              <td>${d?.numberofLoad}</td>
+              <td>${d?.validUpTo ? d.validUpTo : ""}</td>
               <td width="50" className="text-right">
                 ${basePrice}
               </td>
@@ -371,7 +356,6 @@ quotesRatesMainDivFromWebsite.appendChild(para);
   }
 
   renderRates(data) {
-    console.log("i am rendering rates");
     const ratesDiv = document.createElement("div");
     ratesDiv.id='rates__div__id'
     ratesDiv.innerHTML = `
@@ -426,22 +410,22 @@ quotesRatesMainDivFromWebsite.appendChild(para);
                               : `<span class=" badge badge-gray-100">Expired</span>`
                           }
                         </td>
-                        <td>${d.caller && d.caller.company_name}</td>
+                        <td>${d.caller && d.caller?.company_name ? d.caller.company_name : ""}</td>
                         <td>
                           ${d.shipper
                             .map((e, i) => {
                               return e.company_name;
                             })
-                            .join(", ")}
+                            .join("")}
                         </td>
                         <td>${d.consignee
                           .map((e, i) => {
                             return e.company_name;
                           })
-                          .join(", ")}</td>
-                        <td>${d.zipCode}</td>
-                        <td>${d.city}</td>
-                        <td>${d.state}</td>
+                          .join("")}</td>
+                        <td>${d?.zipCode ? d.zipCode : ""}</td>
+                        <td>${d?.city ? d.city : ""}</td>
+                        <td>${d?.state ? d.state: ""}</td>
                         <td><div class="font-12">${basePrice.toFixed(
                           2
                         )}</div></td>
