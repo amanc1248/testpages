@@ -1,5 +1,3 @@
-console.log(window.location.href);
-// console.log(document.getElements('quotes__rates__main__div'));
 const template = document.createElement("template");
 // template.innerHTML = ;
 
@@ -21,18 +19,15 @@ class QuotesRates extends HTMLElement {
     document
     .getElementById("quotesRatesSelect")
     .addEventListener("change", (event) => {
-      // console.log(event)
       const theValue = document.getElementById("quotesRatesSelect").value;
       console.log("selectedvalue: ", theValue);
       if (theValue == "quotes") {
         document.getElementById("rates__div__id").remove();
-        // document.getElementById('pagination__id').remove();
         this.getQuoteTotalCounts({ modalName: "LoadQuote" });
         this.getQuotes({ pageNumber: 1 });
       }
       if (theValue == "rates") {
         document.getElementById("quotes__div__id").remove();
-        // document.getElementById('pagination__id').remove();
         this.getQuoteTotalCounts({ modalName: "LoadPricingSettings" });
         this.getRates({ pageNumber: 1 });
       }
@@ -62,10 +57,13 @@ class QuotesRates extends HTMLElement {
     console.log(quotesRatesHeight, quotesRatesWidth)
     const para = document.createElement("div");
     para.innerHTML = `
-<style> 
+<style>
+    #main__div{
+    }    
     #upperBar{
       display: flex;
       justify-content: space-between; 
+      width:${quotesRatesWidth};
     }
     .pagination__div{
       display:flex;
@@ -73,7 +71,8 @@ class QuotesRates extends HTMLElement {
     #quotes__div__id, #rates__div__id{
       box-shadow: 0 15px 35px rgb(20 28 52 / 20%);
       overflow:scroll;
-      height:${quotesRatesHeight}
+      height:${quotesRatesHeight};
+      width:${quotesRatesWidth};
 
     }
     
@@ -224,7 +223,6 @@ quotesRatesMainDivFromWebsite.appendChild(para);
   // 3. onChanging qutoes or rates
   changeQuotesRates() {
     var x = document.getElementById("quotesRatesSelect").value;
-    // document.getElementById('quotesRatesSelect').addEventListener('')
     console.log(x);
   }
 
