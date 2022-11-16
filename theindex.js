@@ -1,4 +1,5 @@
 const template = document.createElement("template");
+const quotesRatesAPI = "https://demo-staging.app.portpro.io/v1/";
 class QuotesRates extends HTMLElement {
   constructor() {
     
@@ -196,7 +197,7 @@ quotesRatesMainDivFromWebsite.appendChild(para);
     const theId = this.getAttribute("quotesRatesId");
     return new Promise((res, rej) => {
       fetch(
-        `http://localhost:5000/tms/quotesRates?pageNumber=${pageNumber}&nPerPage=20&modelName=LoadQuote&token=${theId}`
+        `${quotesRatesAPI}tms/quotesRates?pageNumber=${pageNumber}&nPerPage=20&modelName=LoadQuote&token=${theId}`
       )
         .then((data) => data.json())
         .then((json) => {
@@ -215,7 +216,7 @@ quotesRatesMainDivFromWebsite.appendChild(para);
     const theId = this.getAttribute("quotesRatesId");
     return new Promise((res, rej) => {
       fetch(
-        `http://localhost:5000/tms/quotesRates?pageNumber=${pageNumber}&nPerPage=20&modelName=LoadPricingSettings&token=${theId}`
+        `${quotesRatesAPI}tms/quotesRates?pageNumber=${pageNumber}&nPerPage=20&modelName=LoadPricingSettings&token=${theId}`
       )
         .then((data) => data.json())
         .then((json) => {
@@ -239,7 +240,7 @@ quotesRatesMainDivFromWebsite.appendChild(para);
     const theId = this.getAttribute("quotesRatesId");
     return new Promise((res, rej) => {
       fetch(
-        `http://localhost:5000/tms/quotesRatesCount?modelName=${modalName}&token=${theId}`
+        `${quotesRatesAPI}tms/quotesRatesCount?modelName=${modalName}&token=${theId}`
       )
         .then((data) => data.json())
         .then((json) => {
