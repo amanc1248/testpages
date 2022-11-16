@@ -155,9 +155,29 @@ class QuotesRates extends HTMLElement {
       padding: 0.65rem 0.50rem;
       vertical-align: middle;
   }
-    
+  .powered__by__portpro__text{
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    width: ${quotesRatesWidth};
+    background-color: #377DF6;
+    color: white;
+    padding: 5px 0;
+
+}
+.poweredby__text{
+
+}
+.portpro__text{
+    font-size: 20px;
+    font-weight: 700;
+}
 </style>
     <div id="main__div" >
+      <div class="powered__by__portpro__text">
+        <div class="poweredby__text">Powered by</div>
+        <div class="portpro__text">PORTPRO</div>
+      </div>
       <div id="upperBar">
         <select name="quotesRatesSelect" id="quotesRatesSelect" >
           <option value="quotes">Quotes</option>
